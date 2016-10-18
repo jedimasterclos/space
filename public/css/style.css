@@ -1,0 +1,31 @@
+body {
+	background-image:url("../img/prp_neb.jpg");
+	background-size: 150%, auto;
+	background-repeat: no-repeat;
+}
+h1 {
+	text-align: center;
+	font-family: 'Audiowide', cursive;
+	color: yellow;
+	margin-bottom: 25px;
+	font-size: 40px;
+}
+.date {
+	color: orange;
+	font-size: 20px;
+	margin-left: 40px;
+}
+.btn {
+	margin-left: 2px;
+	opacity: .5;
+	display: block;
+}
+.btn:hover {
+	opacity: 1;
+}
+.ui-datepicker {
+	background: #333;
+	color: #EEE;
+	font-size: 18px;
+	opacity: .8;
+}
