@@ -1,8 +1,28 @@
 <link href="css/one_style.css" rel="stylesheet">
+
+
+	<p class="date text-center"><strong>Date: </strong><input type="text" id="datepicker" size="30" placeholder="Click here to pick date"></p>
+	<div class="NASA">
+		<img src="#" id='nasaImg' class="img-responsive">
+		<p id="imgTitle"></p>
+	</div>
 <script>
   	$( function() {
   		$( "#datepicker" ).datepicker({dateFormat: 'yy-mm-dd'}).val();
   	});
+  	$('#datepicker').on('change', function () {
+  		console.log(this.value);
+  		$.ajax({
+  			url: '/nasaimg/' + this.value, 
+  			method: 'GET',
+  			success: function(response) {
+  				$('#nasaImg').attr('src', response.url),
+  				$('#imgTitle').attr('textContent', response.title)
+  				
+  			},
+  			error: function(response) {
+  				console.log(response);
+  			}
+  		})
+  	})
  </script>
-
-	<p class="date text-center"><strong>Date: </strong><input type="text" id="datepicker" size="30" placeholder="Click here to pick date"></p>

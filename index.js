@@ -18,22 +18,23 @@ app.use(express.static('public'));
 
 // DEFINE ROUTES/PATHS
 app.get('/', function(req, res) {
-  if(req.params.date) {
-
-  };
-  var search = req.params.date
-  var nasaUrl = 'https://api.nasa.gov/planetary/apod?date=' + search + '&api_key=MzEpv1NTalvTmOMPnsTOrIlkKIR5njkiDLK5p5L3';
-  
-
-  request(nasaUrl, function(error, response, body) {
-    var space = JSON.parse(body).results;
-    res.render('index', { space: space });
-  });
+	res.render('index')
 });
 
 app.get('/apod', function(req, res) {
 	res.render('apod');
-})
+});
+
+app.get('/nasaimg/:date', function (req, res) {
+	console.log(req.params);
+	var search = req.params.date
+  var nasaUrl = 'https://api.nasa.gov/planetary/apod?date=' + search + '&api_key=MzEpv1NTalvTmOMPnsTOrIlkKIR5njkiDLK5p5L3';
+  request(nasaUrl, function(error, response, body) {
+  	console.log(body);
+    var space = JSON.parse(body);
+    res.send(space);
+  });
+});
 
 // LISTEN 
 app.listen(3000);
