@@ -18,14 +18,26 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
+				<% if(!user) { %>
 				<a href="/" class="btn btn-info pull-left">Home</a>
-				<a href="/apod" class="btn btn-success pull-left">APOD</a>
-				<a href="/login" class="btn btn-success pull-right">Login</a>
-				<a href="/signup" class="btn btn-danger pull-right">Sign Up</a>
-				<a href="/about" class="btn btn-primary pull-right">About</a>
+				<a href="/apod" class="btn btn-warning pull-left">APOD</a>
+				<a href="/gallery" class="btn btn-danger pull-left">Gallery</a>
+				<a href="/auth/login" class="btn btn-success pull-right">Login</a>
+				<a href="/auth/signup" class="btn btn-primary pull-right">Sign Up</a>
+				<a href="/about" class="btn btn-default pull-right">About</a>
+				
+				<% }else { %>
+				<a href="/" class="btn btn-info pull-left">Home</a>
+				<a href="/apod" class="btn btn-warning pull-left">APOD</a>
+				<a href="/gallery" class="btn btn-danger pull-left">Gallery</a>
+				<a href="/auth/logout" class="btn btn-success pull-right">Logout</a>
+				<a href="/about" class="btn btn-default pull-right">About</a>
+				<% }; %>
+
 			</div>
 		</div>
 		<h1>Space</h1>
+		<% include partials/alerts %>
 	</div>
 
     <%- body %>

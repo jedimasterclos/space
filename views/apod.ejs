@@ -3,8 +3,9 @@
 
 	<p class="date text-center"><strong>Date: </strong><input type="text" id="datepicker" size="30" placeholder="Click here to pick date"></p>
 	<div class="NASA">
-		<img src="#" id='nasaImg' class="img-responsive">
-		<p id="imgTitle"></p>
+		<img src="/img/plan_sys.jpg" id='nasaImg' class="img-responsive">
+		<p id="imgTitle">Sample Image</p>
+		<p id="imgInfo"></p>
 	</div>
 <script>
   	$( function() {
@@ -17,7 +18,9 @@
   			method: 'GET',
   			success: function(response) {
   				$('#nasaImg').attr('src', response.url),
-  				$('#imgTitle').attr('textContent', response.title)
+  				$('#imgTitle').text(response.title),
+  				$('#imgInfo').text(response.explanation)
+
   				
   			},
   			error: function(response) {

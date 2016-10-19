@@ -3,8 +3,12 @@ var express = require('express');
 var ejsLayouts = require('express-ejs-layouts');
 var bodyParser = require('body-parser');
 var request = require('request');
+require('dotenv').config();
+var session = require('express-session');
+var passport = require('./config/ppConfig');
+var isLoggedIn = require('./middleware/isLoggedIn');
+var flash = require ('connect-flash');
 
-// require('dotenv').config();
 
 // GLOBAL VARIABLES
 var app = express();
@@ -15,14 +19,39 @@ app.set('view engine', 'ejs');
 app.use(ejsLayouts);
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('public'));
+app.use(session({
+	secret: process.env.SESSION_SECRET_KEY,
+	resave: false,
+	saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+app.use(function(req, res, next) {
+	res.locals.currentUser = req.user;
+	res.locals.alerts = req.flash();
+	next();
+});
 
 // DEFINE ROUTES/PATHS
 app.get('/', function(req, res) {
-	res.render('index')
+	var user = req.user
+	res.render('index', {user: user});
+});
+
+app.get('/about', function(req, res) {
+	var user = req.user
+	res.render('about', {user: user});
+});
+
+app.get('/gallery', function(req, res) {
+	var user = req.user
+	res.render('gallery', {user: user});
 });
 
 app.get('/apod', function(req, res) {
-	res.render('apod');
+	var user = req.user
+	res.render('apod', {user: user});
 });
 
 app.get('/nasaimg/:date', function (req, res) {
@@ -36,5 +65,14 @@ app.get('/nasaimg/:date', function (req, res) {
   });
 });
 
+app.get('/profile', isLoggedIn, function(req, res) {
+  var user = req.user
+  res.render('profile', {user: user});
+});
+
+app.use('/auth', require('./controllers/auth'));
+
 // LISTEN 
-app.listen(3000);
+var server = app.listen(process.env.PORT || 3000);
+
+module.exports = server;
