@@ -35,24 +35,29 @@ app.use(function(req, res, next) {
 
 // DEFINE ROUTES/PATHS
 app.get('/', function(req, res) {
-	var user = req.user
+	var user = req.user;
 	res.render('index', {user: user});
 });
 
 app.get('/about', function(req, res) {
-	var user = req.user
+	var user = req.user;
 	res.render('about', {user: user});
 });
 
 app.get('/gallery', function(req, res) {
-	var user = req.user
+	var user = req.user;
 	res.render('gallery', {user: user});
 });
 
 app.get('/apod', function(req, res) {
-	var user = req.user
+	var user = req.user;
 	res.render('apod', {user: user});
 });
+
+app.get('/parallax', function(req, res) {
+	var user = req.user;
+	res.render('parallax', {user: user});
+})
 
 app.get('/nasaimg/:date', function (req, res) {
 	console.log(req.params);
@@ -66,7 +71,7 @@ app.get('/nasaimg/:date', function (req, res) {
 });
 
 app.get('/profile', isLoggedIn, function(req, res) {
-  var user = req.user
+  var user = req.user;
   res.render('profile', {user: user});
 });
 

@@ -1,0 +1,50 @@
+<meta charset="utf-8">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link href="css/two-style.css" rel="stylesheet">
+
+<p class="date text-center"><strong>Date: </strong><input type="text" id="datepicker2" size="30" placeholder="Click here to pick date"></p>
+
+
+<div id="container" class="container">
+		<ul id="scene" class="scene">
+			<li class="layer" data-depth=".2"><img src="img/space7.jpg" id="apodImg"></li>
+			<li id="vader" class="layer" data-depth="0.80"><img src="img/vader.png"></li>
+			<li id="comet" class="layer" data-depth="2.0"><img src="img/comet.png"></li>
+			<li id="rainbow" class="layer" data-depth="0.40"><img src="img/rainbow.png"></li>
+			<li id="planet" class="layer" data-depth="0.10"><img src="img/space4.png"></li>
+			<li id="ship" class="layer" data-depth="6.0"><img src="img/space5.png"></li>
+		</ul>
+</div>
+
+
+<script>
+  	$( function() {
+  		$( "#datepicker2" ).datepicker({dateFormat: 'yy-mm-dd'}).val();
+  	});
+  	$('#datepicker2').on('change', function () {
+  		console.log(this.value);
+  		$.ajax({
+  			url: '/nasaimg/' + this.value, 
+  			method: 'GET',
+  			success: function(response) {
+  				$('#apodImg').attr('src', response.url)				
+  			},
+  			error: function(response) {
+  				console.log(response);
+  			}
+  		});
+  	});
+ </script>
+
+
+<script src="deploy/parallax.js"></script>
+
+<script>
+	$(document).ready(function() {
+		var scene = document.getElementById('scene');
+		var parallax = new Parallax(scene);
+	});
+</script>

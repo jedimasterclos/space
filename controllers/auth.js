@@ -5,12 +5,12 @@ var passport = require('../config/ppConfig');
 var router = express.Router();
 
 router.get('/signup', function(req, res) {
-  var user = req.user
+  var user = req.user;
   res.render('auth/signup', {user: user});
 });
 
 router.get('/login', function(req, res) {
-  var user = req.user
+  var user = req.user;
   res.render('auth/login', {user: user});
 });
 
