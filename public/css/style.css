@@ -1,6 +1,7 @@
 body {
 	background-image:url("../img/prp_neb.jpg");
-	background-size: 150%, auto;
+	background-size: fill;
+
 	background-repeat: no-repeat;
 }
 h1 {
