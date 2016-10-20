@@ -33,9 +33,17 @@ body {
 	text-align: center;
 	font-family: 'Audiowide', cursive;
 	font-size: 18px;
+	color: orange;
 }
 
 .galleryImg {
 	height: auto;
 	width: auto;
+	margin-top: 10px;
+}
+#datepicker {
+	font-family: 'Audiowide', cursive;
+}
+.date {
+	font-family: 'Audiowide', cursive;
 }

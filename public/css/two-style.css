@@ -4,10 +4,8 @@ body {
   background-repeat: no-repeat;
   font-family: 'Audiowide', cursive;
   font-size: 18px;
-  color: #666;
   margin: 0;
 }
-
 img {
   display: block;
   width: 100%;
@@ -18,12 +16,10 @@ img {
   margin: 0 auto;
   padding: 5%;
 }
-
 .scene {
   padding: 0;
   margin: 0;
 }
-
 .fill {
   position: absolute;
   bottom: 5%;
@@ -31,59 +27,49 @@ img {
   left: 5%;
   top: 5%;
 }
-
 .expand-width {
   width: 100%;
 }
-
 .border {
   border: 2px dashed #00FFAA;
 }
-
 .aspect {
   opacity: 0.2;
 }
-
 .layer:nth-child(1) {
 }
 .layer:nth-child(1) button {
   -webkit-transform: rotate(150deg);
 }
-
 .layer:nth-child(2) {
   opacity: 0.30;
 }
 .layer:nth-child(2) button {
   -webkit-transform: rotate(120deg);
 }
-
 .layer:nth-child(3) {
   opacity: 0.45;
 }
 .layer:nth-child(3) button {
   -webkit-transform: rotate(90deg);
 }
-
 .layer:nth-child(4) {
   opacity: 0.60;
 }
 .layer:nth-child(4) button {
   -webkit-transform: rotate(60deg);
 }
-
 .layer:nth-child(5) {
   opacity: 0.75;
 }
 .layer:nth-child(5) button {
   -webkit-transform: rotate(30deg);
 }
-
 .layer:nth-child(6) {
   opacity: 0.90;
 }
 .layer:nth-child(6) button {
 }
-
 #apodImg {
   opacity: 1;
   height: 100%;
@@ -96,7 +82,6 @@ img {
   bottom: 230px;
   right: 290px;
   opacity: .7;
-
 }
 #ship {
   width: 35%;
@@ -108,9 +93,7 @@ img {
 }
 #rainbow {
   opacity: .5;
-
 }
-
 #comet {
   width: 20%;
   top: auto !important;
@@ -127,3 +110,4 @@ img {
   right: 230px;
   opacity: .7;
 }
+
