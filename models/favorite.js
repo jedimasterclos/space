@@ -2,7 +2,8 @@
 module.exports = function(sequelize, DataTypes) {
   var favorite = sequelize.define('favorite', {
     userId: DataTypes.INTEGER,
-    hdurl: DataTypes.STRING
+    hdurl: DataTypes.STRING,
+    title: DataTypes.TEXT
   }, {
     classMethods: {
       associate: function(models) {

@@ -1,9 +1,7 @@
 body {
-	background-image:url("../img/star_neb.jpg");
-	background-size: fill;
-	background-repeat: no-repeat;
+	background:url("../img/star_neb.jpg") no-repeat center center fixed;
+	background-size: cover;
 }
-
 #nasaImg {
 	height: 400px;
 	margin: 20px auto;
@@ -12,30 +10,25 @@ body {
 	border: 2px solid;
 	border-color: rgba(#000.2);
 }
-
 .NASA {
 	text-align: center;
 }
-
 #imgTitle {
 	font-family: 'Audiowide', cursive;
 	font-size: 25px;
 	color: white;
 }
-
 #imgInfo {
 	font-size: 10px;
 	color: white;
 	margin: 10px 50px;
 }
-
 .gallery {
 	text-align: center;
 	font-family: 'Audiowide', cursive;
 	font-size: 18px;
 	color: orange;
 }
-
 .galleryImg {
 	height: auto;
 	width: auto;
@@ -46,4 +39,9 @@ body {
 }
 .date {
 	font-family: 'Audiowide', cursive;
+}
+#hdImg, #hdTitle {
+	font-family: 'Audiowide', cursive;
+	margin-top: 18px;
+	visibility: hidden;
 }

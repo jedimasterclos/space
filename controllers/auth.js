@@ -3,6 +3,18 @@ var router = express.Router();
 var db = require('../models');
 var passport = require('../config/ppConfig');
 var router = express.Router();
+var session = require('express-session');
+var isLoggedIn = require('../middleware/isLoggedIn');
+var flash = require ('connect-flash');
+
+var app = express();
+
+app.use(flash());
+app.use(function(req, res, next) {
+	res.locals.currentUser = req.user;
+	res.locals.alerts = req.flash();
+	next();
+});
 
 router.get('/signup', function(req, res) {
   var user = req.user;
@@ -37,7 +49,6 @@ router.post('/signup', function(req, res) {
 		res.redirect('/auth/signup');
 	});
 });	
-
 router.post('/login', passport.authenticate('local', {
 	successRedirect: '/',
 	failureRedirect: '/auth/login',

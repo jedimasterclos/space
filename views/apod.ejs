@@ -2,6 +2,16 @@
 
 
 	<p class="date text-center"><strong>Date: </strong><input type="text" id="datepicker" size="30" placeholder="Click here to pick date"></p>
+  <% if(!user) { %>
+  
+  <% }else { %>
+    <form action='/apod' method='POST'>
+      <input type="text" name="hdImg" id='hdImg'>
+      <input type="text" name="hdTitle" id='hdTitle'>
+      <br>
+      <input type="submit" value="Save Image To Gallery" class="btn btn-success center-block">
+    </form>
+    <% }; %>
 	<div class="NASA">
 		<img src="/img/plan_sys.jpg" id='nasaImg' class="img-responsive">
 		<p id="imgTitle">Sample Image</p>
@@ -17,11 +27,12 @@
   			url: '/nasaimg/' + this.value, 
   			method: 'GET',
   			success: function(response) {
+          console.log(response);
   				$('#nasaImg').attr('src', response.url),
   				$('#imgTitle').text(response.title),
-  				$('#imgInfo').text(response.explanation)
-
-  				
+  				$('#imgInfo').text(response.explanation),
+          document.getElementById("hdImg").value = response.hdurl;
+          document.getElementById("hdTitle").value= response.title;
   			},
   			error: function(response) {
   				console.log(response);

@@ -8,7 +8,7 @@ var session = require('express-session');
 var passport = require('./config/ppConfig');
 var isLoggedIn = require('./middleware/isLoggedIn');
 var flash = require ('connect-flash');
-
+var db = require('./models');
 
 // GLOBAL VARIABLES
 var app = express();
@@ -46,12 +46,44 @@ app.get('/about', function(req, res) {
 
 app.get('/gallery', function(req, res) {
 	var user = req.user;
-	res.render('gallery', {user: user});
+	if(user) {
+		db.favorite.findAll({
+			where: {userId: user.id}
+		}).then(function(favorite) {
+			console.log(favorite);
+			res.render('gallery', {user:user, favorite: favorite})
+		});
+	}
+	else {
+		res.render('gallery', {user: null, favorite: null});
+	}
 });
 
 app.get('/apod', function(req, res) {
 	var user = req.user;
 	res.render('apod', {user: user});
+});
+
+app.post('/apod', function(req, res) {
+	var user = req.user;
+	var hdUrl = req.body.hdImg
+	var imgTitle= req.body.hdTitle
+	db.favorite.findOrCreate({
+		where: {
+			userId: user.id,
+			hdurl: hdUrl,
+			title: imgTitle
+		}
+	}).spread(function(favorite, wasCreated) {
+		if (wasCreated) {
+			req.flash('success','Saved image in gallery');
+			res.redirect('/apod');
+		}
+		else {
+			req.flash('error','Already saved image in gallery');
+			res.redirect('/apod');
+		}
+	});
 });
 
 app.get('/parallax', function(req, res) {
