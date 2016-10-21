@@ -7,7 +7,18 @@
 
 <div>
 <p class="date text-center"><strong>Date: </strong><input type="text" id="datepicker2" size="30" placeholder="Click here to pick date"></p>
+<script>
+$(document).ready(function() {
+  var spaceSounds = document.createElement("audio");
+    spaceSounds.src="/media/machine.mp3"
+    spaceSounds.volume = .15;
+    spaceSounds.autoPlay = false;
+    spaceSounds.preLoad = false;
+    spaceSounds.loop= true;
 
+  spaceSounds.play();
+});  
+</script>
 
 <div id="container" class="container">
 		<ul id="scene" class="scene">
