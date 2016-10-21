@@ -26,7 +26,6 @@
   		$( "#datepicker2" ).datepicker({dateFormat: 'yy-mm-dd'}).val();
   	});
   	$('#datepicker2').on('change', function () {
-  		console.log(this.value);
   		$.ajax({
   			url: '/nasaimg/' + this.value, 
   			method: 'GET',
