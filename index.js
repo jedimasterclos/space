@@ -50,7 +50,6 @@ app.get('/gallery', function(req, res) {
 		db.favorite.findAll({
 			where: {userId: user.id}
 		}).then(function(favorite) {
-			console.log(favorite);
 			res.render('gallery', {user:user, favorite: favorite})
 		});
 	}
@@ -92,11 +91,9 @@ app.get('/parallax', function(req, res) {
 })
 
 app.get('/nasaimg/:date', function (req, res) {
-	console.log(req.params);
 	var search = req.params.date
   var nasaUrl = 'https://api.nasa.gov/planetary/apod?date=' + search + '&api_key=MzEpv1NTalvTmOMPnsTOrIlkKIR5njkiDLK5p5L3';
   request(nasaUrl, function(error, response, body) {
-  	console.log(body);
     var space = JSON.parse(body);
     res.send(space);
   });
@@ -105,6 +102,23 @@ app.get('/nasaimg/:date', function (req, res) {
 app.get('/profile', isLoggedIn, function(req, res) {
   var user = req.user;
   res.render('profile', {user: user});
+});
+
+app.delete('/gallery/:id', function(req, res) {
+	db.favorite.findById(req.params.id).then(function(url) {
+		if(url) {
+			url.destroy().then(function() {
+				res.send({msg: 'success'});
+				req.flash('success','Deleted image');
+				res.redirect('/gallery');
+			})
+		}
+		else {
+			res.status(404).send({msg:'error,try again'});
+		}
+	}).catch(function(err) {
+		res.status(500).send({msg:'error'});
+	});
 });
 
 app.use('/auth', require('./controllers/auth'));

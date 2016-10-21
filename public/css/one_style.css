@@ -34,14 +34,14 @@ body {
 	width: auto;
 	margin-top: 10px;
 }
-#datepicker {
-	font-family: 'Audiowide', cursive;
-}
-.date {
+.date, #datepicker {
 	font-family: 'Audiowide', cursive;
 }
 #hdImg, #hdTitle {
 	font-family: 'Audiowide', cursive;
 	margin-top: 18px;
 	visibility: hidden;
+}
+.delete-link {
+	width: 150px;
 }
