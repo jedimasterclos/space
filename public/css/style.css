@@ -19,6 +19,12 @@ h2 {
 	font-size: 20px;
 	margin-left: 40px;
 }
+#datepicker {
+	background-color: rgba(0,0,0,0.2);
+}
+.nav {
+	width: 100px;
+}
 .btn {
 	margin-top: 5px;
 	border: 1px solid white;
@@ -36,7 +42,6 @@ h2 {
 	font-size: 18px;
 	opacity: .8;
 }
-
 .form-group {
 	color: white;
 	font-family: 'Audiowide', cursive;

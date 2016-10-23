@@ -37,11 +37,15 @@ body {
 .date, #datepicker {
 	font-family: 'Audiowide', cursive;
 }
+.ui-datepicker {
+	font-family: 'Audiowide', cursive;
+}	
 #hdImg, #hdTitle {
 	font-family: 'Audiowide', cursive;
 	margin-top: 18px;
 	visibility: hidden;
 }
-.delete-link {
-	width: 150px;
+.delete-link, .dlImg {
+	width: 120px;
+	display: inline;
 }

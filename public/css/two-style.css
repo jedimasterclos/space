@@ -74,6 +74,9 @@ img {
   height: 100%;
   width: 100%;
 }
+#datepicker2 {
+  background-color: rgba(0,0,0,0.2);
+}
 #planet {
   width: 40%;
   top: auto !important;

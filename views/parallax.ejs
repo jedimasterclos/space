@@ -41,7 +41,12 @@ $(document).ready(function() {
   			url: '/nasaimg/' + this.value, 
   			method: 'GET',
   			success: function(response) {
-  				$('#apodImg').attr('src', response.url)				
+  				if(response.media_type == 'image') {
+            $('#apodImg').attr('src', response.url);
+          }
+          else {
+            $('#apodImg').attr('src', 'img/space7.jpg');
+          }  				
   			},
   			error: function(response) {
   				console.log(response);

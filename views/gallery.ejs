@@ -67,6 +67,7 @@
 				<div class='col-xs-12 col-sm-6 col-md-3'>
 					<img src="<%= fav.hdurl %>" class="img-responsive galleryImg"> 
 					<p class="pictureTitle"><%= fav.title %></p>
+					<a href="<%= fav.hdurl %>" download="<%= fav.title %>" class="btn btn-success center-block dlImg">Download</a>
 					<a href="/gallery/<%= fav.id %>" class="btn btn-danger center-block delete-link">Delete Image</a>
 				</div>	
 			<% }); %>

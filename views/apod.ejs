@@ -14,11 +14,13 @@
     <% }; %>
 	<div class="NASA">
 		<img src="/img/plan_sys.jpg" id='nasaImg' class="img-responsive">
+    <iframe id="apodVid" type="text/html" width="640" height="385" frameborder="0"></iframe>
 		<p id="imgTitle">Sample Image</p>
 		<p id="imgInfo"></p>
 	</div>
 <script>
     $('#saveBtn').hide();
+    $('#apodVid').hide();
   	$( function() {
   		$( "#datepicker" ).datepicker({dateFormat: 'yy-mm-dd'}).val();
   	});
@@ -28,19 +30,32 @@
   			method: 'GET',
   			success: function(response) {
           if (response.media_type == 'image') {
-  				  $('#saveBtn').show(),
-            $('#nasaImg').attr('src', response.url)
-            $('#imgTitle').text(response.title),
-            $('#imgInfo').text(response.explanation),
+  				  $('#apodVid').hide();
+            $('#nasaImg').show();
+            $('#imgInfo').show();
+            $('#saveBtn').show();
+            $('#nasaImg').attr('src', response.url);
+            $('#imgTitle').text(response.title);
+            $('#imgInfo').text(response.explanation);
             document.getElementById("hdImg").value = response.hdurl;
             document.getElementById("hdTitle").value= response.title;
           }
-          else {
-            $('#nasaImg').attr('src', '/img/nah.gif'),
-            $('#imgTitle').text('Not a valid image'),
-            $('#imgInfo').text(''),
-            $('#saveBtn').hide()
+          else if(response.media_type == 'video') {
+            $('#nasaImg').hide();
+            $('#imgInfo').hide();
+            $('#saveBtn').hide();
+            $('#apodVid').show();
+            $('#imgTitle').text('Video from NASA');
+            $('#apodVid').attr("src", response.url);
 
+          }
+          else {
+            $('#apodVid').hide();
+            $('#imgInfo').hide();
+            $('#saveBtn').hide();
+            $('#nasaImg').show();
+            $('#nasaImg').attr('src', '/img/nah.gif');
+            $('#imgTitle').text('Not a valid image');
           }
   				
   			},
