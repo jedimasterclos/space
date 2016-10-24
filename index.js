@@ -36,11 +36,6 @@ app.use(function(req, res, next) {
 // DEFINE ROUTES/PATHS
 app.get('/', function(req, res) {
 	var user = req.user;
-	res.render('index', {user: user});
-});
-
-app.get('/about', function(req, res) {
-	var user = req.user;
 	res.render('about', {user: user});
 });
 

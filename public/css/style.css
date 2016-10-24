@@ -8,11 +8,39 @@ h1 {
 	color: yellow;
 	margin-bottom: 25px;
 	font-size: 40px;
+	opacity: .5;
 }
 h2 {
 	text-align: center;
 	font-family: 'Audiowide', cursive;
 	color: white;
+	opacity: .5;
+}
+.banner {
+	position: relative;
+	vertical-align: bottom;
+	vertical-align: baseline;
+	padding-bottom: 10px;
+	max-height: 300px;
+	width: auto;
+	opacity: 1;
+	
+}
+.banner:hover {
+	opacity: .6;
+}
+.bannerText {
+	color: yellow;
+	font-family: 'Audiowide', cursive;
+	font-size: 27px;
+	position: absolute;
+	text-align: center;
+	width: 80%;
+	bottom: 155px;
+	left: 10%;	
+}
+.bannerText:hover {
+	color: red;
 }
 .date {
 	color: orange;
