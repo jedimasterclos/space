@@ -14,4 +14,4 @@ This project uses HTML, CSS, Javascript, JQuery, Node/Express, Sequelize, & NASA
 
 ## Problems
 
-Due to time constraints I was not able to get the parallax effect as clean as I wanted. It is very basic and does not work well with all images. In addition, the favorites database is not functioning on heroku. This means that when a registered user tries to save an image or go to the gallery, the website will crash. 
+Due to time constraints I was not able to get the parallax effect as clean as I wanted. It is very basic and does not work well with all images. 
