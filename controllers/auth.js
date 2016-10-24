@@ -9,6 +9,7 @@ var flash = require ('connect-flash');
 
 var app = express();
 
+// FLASH MESSAGES TO ALERT USER
 app.use(flash());
 app.use(function(req, res, next) {
 	res.locals.currentUser = req.user;
@@ -16,14 +17,10 @@ app.use(function(req, res, next) {
 	next();
 });
 
+// SIGN UP PAGE
 router.get('/signup', function(req, res) {
   var user = req.user;
   res.render('auth/signup', {user: user});
-});
-
-router.get('/login', function(req, res) {
-  var user = req.user;
-  res.render('auth/login', {user: user});
 });
 
 router.post('/signup', function(req, res) {
@@ -49,6 +46,13 @@ router.post('/signup', function(req, res) {
 		res.redirect('/auth/signup');
 	});
 });	
+
+// LOGIN PAGE
+router.get('/login', function(req, res) {
+  var user = req.user;
+  res.render('auth/login', {user: user});
+});
+
 router.post('/login', passport.authenticate('local', {
 	successRedirect: '/',
 	failureRedirect: '/auth/login',
@@ -56,6 +60,7 @@ router.post('/login', passport.authenticate('local', {
 	successFlash: 'Successfully logged in'
 }));
 
+// LOGOUT PAGE
 router.get('/logout', function(req, res) {
 	req.logout();
 	req.flash('success', 'logged out');

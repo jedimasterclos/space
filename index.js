@@ -44,6 +44,7 @@ app.get('/about', function(req, res) {
 	res.render('about', {user: user});
 });
 
+// GALLERY PAGE WHERE USERS CAN VIEW THEIR SAVED IMAGES
 app.get('/gallery', function(req, res) {
 	var user = req.user;
 	if(user) {
@@ -58,6 +59,24 @@ app.get('/gallery', function(req, res) {
 	}
 });
 
+app.delete('/gallery/:id', function(req, res) {
+	db.favorite.findById(req.params.id).then(function(url) {
+		if(url) {
+			url.destroy().then(function() {
+				res.send({msg: 'success'});
+				req.flash('success','Deleted image');
+				res.redirect('/gallery');
+			})
+		}
+		else {
+			res.status(404).send({msg:'error,try again'});
+		}
+	}).catch(function(err) {
+		res.status(500).send({msg:'error'});
+	});
+});
+
+// NASA PICTURE OF THE DAY PAGE
 app.get('/apod', function(req, res) {
 	var user = req.user;
 	res.render('apod', {user: user});
@@ -85,11 +104,6 @@ app.post('/apod', function(req, res) {
 	});
 });
 
-app.get('/parallax', function(req, res) {
-	var user = req.user;
-	res.render('parallax', {user: user});
-})
-
 app.get('/nasaimg/:date', function (req, res) {
 	var search = req.params.date
   var nasaUrl = 'https://api.nasa.gov/planetary/apod?date=' + search + '&api_key=MzEpv1NTalvTmOMPnsTOrIlkKIR5njkiDLK5p5L3';
@@ -99,26 +113,16 @@ app.get('/nasaimg/:date', function (req, res) {
   });
 });
 
+// PARALLAX PAGE WHERE THEY CAN VIEW NASA'S PHOTOS WITH STYLE
+app.get('/parallax', function(req, res) {
+	var user = req.user;
+	res.render('parallax', {user: user});
+})
+
+// PROFILE PAGE
 app.get('/profile', isLoggedIn, function(req, res) {
   var user = req.user;
   res.render('profile', {user: user});
-});
-
-app.delete('/gallery/:id', function(req, res) {
-	db.favorite.findById(req.params.id).then(function(url) {
-		if(url) {
-			url.destroy().then(function() {
-				res.send({msg: 'success'});
-				req.flash('success','Deleted image');
-				res.redirect('/gallery');
-			})
-		}
-		else {
-			res.status(404).send({msg:'error,try again'});
-		}
-	}).catch(function(err) {
-		res.status(500).send({msg:'error'});
-	});
 });
 
 app.use('/auth', require('./controllers/auth'));
